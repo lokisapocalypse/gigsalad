@@ -1,0 +1,1 @@
+"use strict";$(function(){$("#carousel-right-button").on("click",function(){var a,b=$("#performer-list .active").nextAll().length;5>=b&&(a=$("#performer-list .item").length,$.post("/demo/ajax-load-performers/"+a,function(a){$("#performer-list").append(a)}))})});

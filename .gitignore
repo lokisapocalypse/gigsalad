@@ -34,3 +34,4 @@ assets/bower_components
 assets/styles/vendor
 application/config/database.php
 build/
+npm-debug.log

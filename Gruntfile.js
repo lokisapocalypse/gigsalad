@@ -77,13 +77,12 @@ module.exports = function (grunt) {
             vendorcss: {
                 src: [
                     '<%= config.assets %>/styles/vendor/bootstrap.css',
-                    '<%= config.bower %>/select2/select2.css',
-                    '<%= config.bower %>/select2-bootstrap-css/select2-bootstrap.css',
                 ],
                 dest: '<%= config.dist %>/styles/vendor.css'
             },
             css: {
                 src: [
+                    '<%= config.assets %>/styles/main.css',
                 ],
                 exclude: [
                     '<%= config.dist %>/styles/vendor.css',
@@ -93,10 +92,8 @@ module.exports = function (grunt) {
             vendorjs: {
                 src: [
                     '<%= config.bower %>/jquery/dist/jquery.min.js',
-                    '<%= config.bower %>/bootstrap/js/dropdown.js',
-                    '<%= config.bower %>/bootstrap/js/button.js',
-                    '<%= config.bower %>/select2/select2.min.js',
-                    '<%= config.bower %>/jquery.payment/lib/jquery.payment.js',
+                    '<%= config.bower %>/bootstrap/js/transition.js',
+                    '<%= config.bower %>/bootstrap/js/carousel.js',
                 ],
                 dest: '<%= config.dist %>/scripts/vendor.js'
             },
@@ -108,6 +105,37 @@ module.exports = function (grunt) {
                     '<%= config.dist %>/scripts/vendor.js',
                 ],
                 dest: '<%= config.dist %>/scripts/app.js'
+            },
+        },
+
+        copy: {
+            dist: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= config.assets %>',
+                    dest: '<%= config.dist %>',
+                    src: [
+                        '*.{ico,png,txt}',
+                        '{,*/}*.html',
+                        'images/{,*/}*.webp',
+                        'styles/fonts/{,*/}*.*',
+                        'files/{,*/}*.*',
+                        'images/{,*/}*.*',
+                    ]
+                }, {
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= config.assets %>/bower_components/bootstrap/dist',
+                    src: ['fonts/*.*'],
+                    dest: '<%= config.dist %>'
+                }, {
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= config.bower %>/bootstrap-glyphicons',
+                    src: ['glyphicons.png'],
+                    dest: '<%= config.dist %>/img'
+                }]
             },
         },
 
@@ -183,6 +211,7 @@ module.exports = function (grunt) {
         'concurrent:dist',
         'less:dist',
         'concat',
+        'copy',
         'cssmin',
         'uglify'
     ]);
