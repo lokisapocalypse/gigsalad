@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="gigsalad" default="build">
+
+    <property environment="env" />
+
+    <target name="build"
+        depends="clean,init" />
+
+    <!-- To init this project on production run:
+                           ant init -DENVIRONMENT=production
+         -->
+    <target name="init"
+        depends="composer,bower,npm,grunt" />
+
+    <target name="deploy"
+        depends="composer" />
+
+    <target name="clean" description="Cleanup build artifacts">
+        <delete verbose="true" includeEmptyDirs="true">
+            <fileset dir="build" excludes="cache.*" />
+        </delete>
+    </target>
+
+    <target name="composer" description="Install composer modules">
+        <exec executable="/usr/local/bin/composer.phar" failonerror="false" dir="${basedir}">
+            <arg value="install" />
+        </exec>
+    </target>
+
+    <target name="bower" description="Install Bower components">
+        <exec executable="/usr/bin/bower" failonerror="false" dir="${basedir}">
+            <arg value="install" />
+        </exec>
+    </target>
+
+    <target name="npm" description="Install npm components">
+        <exec executable="/usr/bin/npm" failonerror="false" dir="${basedir}">
+            <arg value="install" />
+        </exec>
+    </target>
+
+    <target name="grunt" description="Perform Grunt tasks">
+        <exec executable="/usr/bin/grunt" failonerror="false" dir="${basedir}">
+            <arg value="build" />
+        </exec>
+    </target>
+
+</project>

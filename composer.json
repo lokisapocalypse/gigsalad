@@ -1,0 +1,17 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Gigsalad\\Demo\\": ["src/", "tests/"]
+        }
+    },
+    "description": "Gigsalad coding exercise",
+    "homepage": "http://gigsalad.fusaniapplications.com",
+    "name": "lokisapocalypse/gigsalad",
+    "require": {
+        "codeigniter/framework": "3.0.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.2.*",
+        "squizlabs/php_codesniffer": "2.*"
+    }
+}
